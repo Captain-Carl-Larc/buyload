@@ -1,9 +1,17 @@
-// 1. Import from your custom generated path instead of node_modules
-import { PrismaClient } from "../generated/prisma"; 
+import { PrismaClient } from "../generated/prisma";
+import { PrismaPg } from "@prisma/adapter-pg";
+import "server-only";
 
-// 2. The rest of your singleton logic remains exactly the same
 const prismaClientSingleton = () => {
-  return new PrismaClient();
+  const connectionString = process.env.DATABASE_URL;
+
+  if (!connectionString) {
+    throw new Error("DATABASE_URL is not defined in your .env file.");
+  }
+
+  const adapter = new PrismaPg({ connectionString });
+
+  return new PrismaClient({ adapter });
 };
 
 declare global {

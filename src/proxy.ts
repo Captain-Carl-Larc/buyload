@@ -5,7 +5,7 @@ import { withAuth } from "next-auth/middleware";
 
 // Main export of the auth-wrapped middleware function
 export default withAuth(
-  function middleware(req) {
+  function proxy(req) {
     // 1. Get the session token from the request
     const token = req.nextauth.token;
     // 2. Identify if the current path is inside the /admin folder
@@ -30,6 +30,20 @@ export default withAuth(
 
 // Matcher configuration for Next.js
 export const config = {
-  // Protects everything in the /admin folder
-  matcher: ["/admin/:path*"],
+  matcher: [
+    /*
+     * 1. EXCLUDE these paths from being intercepted by the proxy:
+     * - api/auth (The engine that processes your login)
+     * - admin-access (The actual Gatehouse page)
+     * - _next (Next.js internal files/styling)
+     * - favicon.ico, public folder images
+     */
+    '/((?!api/auth|admin-access|_next/static|_next/image|favicon.ico).*)',
+
+    /*
+     * 2. INCLUDE these paths for protection:
+     * - This ensures everything inside /admin is strictly guarded
+     */
+    '/admin/:path*'
+  ],
 };
