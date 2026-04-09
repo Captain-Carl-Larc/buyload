@@ -39,9 +39,17 @@ export async function handleRegister(formData: FormData) {
       email,
       name,
       password: hashedPassword,
-      role: "ADMIN" // Assigning ADMIN status for your initial setup
+      role: "VIEWER" // Assigning VIEWER status for your initial setup
     }
   });
+  
 
-  return { success: true };
+ // F. SUCCESS RESPONSE
+// We return this object so the frontend knows it's time to auto-login
+return { 
+  success: true, 
+  user: { email: email },
+  message: "Account created successfully" 
+};
+  
 }

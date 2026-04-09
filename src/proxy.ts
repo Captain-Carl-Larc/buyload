@@ -14,11 +14,12 @@ export default withAuth(
     // 3. LOGIC: If they are trying to reach /admin but are NOT logged in at all
     if (isAdminRoute && !token) {
       // Send them to the "Gatehouse" to explain why they need an account
-      return NextResponse.redirect(new URL("/admin-access", req.url));
-    }
+return NextResponse.redirect(new URL("/auth-choice", req.url));    }
     
     // NOTE: We have removed the role check from here! 
     // Anyone with a valid account can now enter the /admin zone.
+    // 2. If they HAVE a token and are going to admin -> Let them through!
+    return NextResponse.next();
   },
   {
     callbacks: {
@@ -30,20 +31,6 @@ export default withAuth(
 
 // Matcher configuration for Next.js
 export const config = {
-  matcher: [
-    /*
-     * 1. EXCLUDE these paths from being intercepted by the proxy:
-     * - api/auth (The engine that processes your login)
-     * - admin-access (The actual Gatehouse page)
-     * - _next (Next.js internal files/styling)
-     * - favicon.ico, public folder images
-     */
-    '/((?!api/auth|admin-access|_next/static|_next/image|favicon.ico).*)',
+    matcher: ["/admin/:path*"],
 
-    /*
-     * 2. INCLUDE these paths for protection:
-     * - This ensures everything inside /admin is strictly guarded
-     */
-    '/admin/:path*'
-  ],
 };

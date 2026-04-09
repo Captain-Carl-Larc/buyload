@@ -77,6 +77,6 @@ if (!user || !user.password) {
 
   // REDIRECTS: Pointing the default login behavior to your custom gatehouse
   pages: {
-    signIn: "/admin-access",
+    signIn: "/admin",
   }
 };
