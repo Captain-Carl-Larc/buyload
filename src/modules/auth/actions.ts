@@ -5,6 +5,11 @@ import { db } from "@/core/db";
 // 2. Import bcrypt to handle the security side of registration
 import bcrypt from "bcryptjs";
 
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/core/auth";
+import { revalidatePath } from "next/cache";
+
+
 /**
  * Handles the logic for creating a new account in the system.
  * This is used during the initial setup of Buyload.
@@ -52,4 +57,77 @@ return {
   message: "Account created successfully" 
 };
   
+}
+
+/**
+ * UPDATE USER
+ * Changes name, email, or role.
+ */
+export async function updateUser(userId: string, data: { name: string; email: string; role: string }) {
+  const session = await getServerSession(authOptions);
+  
+  // 1. Basic Session Check
+  if (!session?.user) throw new Error("Not authenticated");
+
+  const isEditingSelf = session.user.id === userId;
+  const isAdmin = session.user.role === "ADMIN";
+
+  // 2. SECURITY GATE
+  // If you aren't an admin AND you aren't editing yourself -> BLOCKED
+  if (!isAdmin && !isEditingSelf) {
+    throw new Error("Unauthorized: You can only edit your own profile.");
+  }
+
+  // 3. ROLE PROTECTION
+  // If editing self, we FORCED the role to stay exactly as it is in the DB
+  if (isEditingSelf && data.role !== session.user.role) {
+    throw new Error("Security Alert: You cannot change your own administrative rank.");
+  }
+
+  // 4. PREVENT NON-ADMINS FROM PROMOTING THEMSELVES
+  // (In case an Editor tries to send a "role: ADMIN" request via the console)
+  if (!isAdmin && data.role === "ADMIN") {
+    throw new Error("You do not have permission to grant Administrative access.");
+  }
+
+  // 5. DATABASE UPDATE
+  await db.user.update({
+    where: { id: userId },
+    data: {
+      name: data.name,
+      email: data.email,
+      // Only update role if the person doing the editing is an ADMIN
+      ...(isAdmin && !isEditingSelf ? { role: data.role as any } : {}),
+    },
+  });
+
+  revalidatePath("/admin/users");
+  return { success: true };
+}
+
+
+/**
+ * DELETE USER
+ */
+export async function deleteUser(userId: string) {
+  const session = await getServerSession(authOptions);
+
+  // 1. Security Check
+  if (!session || session.user.role !== "ADMIN") {
+    throw new Error("Unauthorized");
+  }
+
+  // 2. Suicide Prevention: Don't let Michelle delete herself!
+  if (userId === session.user.id) {
+    return { success: false, message: "You cannot delete your own admin account." };
+  }
+
+  // 3. Database Operation
+  await db.user.delete({
+    where: { id: userId },
+  });
+
+  // 4. Refresh the UI
+  revalidatePath("/admin/users");
+  return { success: true };
 }

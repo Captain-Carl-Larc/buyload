@@ -2,10 +2,10 @@ import { LayoutDashboard, FileText, Tags, Users } from 'lucide-react';
 import Link from 'next/link';
 
 const menuItems = [
-  { label: "Dashboard", href: "/dashboard", icon: <LayoutDashboard size={18} /> },
-  { label: "Posts", href: "/posts", icon: <FileText size={18} /> },
-  { label: "Categories", href: "/categories", icon: <Tags size={18} /> },
-  { label: "Users", href: "/users", icon: <Users size={18} /> },
+  { label: "Dashboard", href: "/admin/dashboard", icon: <LayoutDashboard size={18} /> },
+  { label: "Posts", href: "/admin/posts", icon: <FileText size={18} /> },
+  { label: "Categories", href: "/admin/categories", icon: <Tags size={18} /> },
+  { label: "Users", href: "/admin/users", icon: <Users size={18} /> },
 ];
 
 export function Sidebar() {
