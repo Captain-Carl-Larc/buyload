@@ -1,18 +1,21 @@
+import ServicesHero from "@/components/public/services/ServicesHero";
+import ServicesGrid from "@/components/public/services/ServicesGrid";
+import ServiceComparison from "@/components/public/services/ServiceComparison";
+import KnowledgeBase from "@/components/public/about/KnowledgeBase"; // Reuse the About page CTA
+
+export const metadata = {
+  title: "Our Services | Fyutchalabs Digital Product Studio",
+  description: "Explore our range of custom web design, application development, and CMS solutions engineered for performance and growth.",
+};
+
 export default function ServicesPage() {
-  const services = ["web-design", "digital-marketing", "seo-optimization", "branding"];
-  
   return (
-    <div className="mx-auto px-6 py-20 max-w-6xl text-center">
-      <h1 className="mb-4 font-bold text-4xl">Our Services</h1>
-      <p className="mb-12 text-zinc-500">Tailored digital solutions for the Kenyan market.</p>
-      <div className="gap-4 grid md:grid-cols-2">
-        {services.map(s => (
-          <a key={s} href={`/services/${s}`} className="hover:bg-zinc-50 p-8 border rounded-2xl text-left">
-            <h3 className="font-bold text-xl capitalize">{s.replace(/-/g, ' ')}</h3>
-            <p className="mt-2 text-zinc-500">Click to learn more about our {s} process.</p>
-          </a>
-        ))}
-      </div>
+    <div className="flex flex-col gap-24 py-12 animate-in duration-700 fade-in">
+      <ServicesHero />
+      <ServicesGrid />
+      <ServiceComparison />
+      {/* Reusing KnowledgeBase because it bridges to WhatsApp perfectly */}
+      <KnowledgeBase />
     </div>
-  )
+  );
 }
