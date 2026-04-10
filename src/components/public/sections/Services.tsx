@@ -4,38 +4,45 @@ import Link from "next/link";
 const services = [
   {
     icon: "◻",
-    title: "Website Design",
+    title: "Web Design",
     description:
-      "Custom, conversion-focused websites built from scratch. No templates — every pixel designed for your brand and goals.",
-    href: "/services/website-design",
+      "Custom website design crafted around your brand and goals. Every layout, colour, and detail is intentional — no templates, no shortcuts.",
+    href: "/services/web-design",
   },
   {
     icon: "⬡",
-    title: "Web Applications",
+    title: "Web Development",
     description:
-      "Full-stack web apps with real functionality — dashboards, portals, booking systems, and more.",
-    href: "/services/web-apps",
+      "Clean, performant code that brings your designs to life. From marketing sites to complex multi-page platforms, built to last.",
+    href: "/services/web-development",
   },
   {
     icon: "◈",
-    title: "SEO Optimization",
+    title: "App Design",
     description:
-      "Technical and on-page SEO that gets your business found on Google. We audit, fix, and rank.",
-    href: "/services/seo",
+      "UI/UX design for web and mobile applications. Intuitive flows, polished interfaces, and design systems built for scale.",
+    href: "/services/app-design",
   },
   {
     icon: "⬕",
-    title: "CMS Design",
+    title: "App Development",
     description:
-      "Headless or traditional CMS setups so your team can update content without touching code.",
-    href: "/services/cms",
+      "Full-stack web application development — dashboards, portals, booking systems, SaaS tools, and custom internal tools.",
+    href: "/services/app-development",
   },
   {
     icon: "◉",
-    title: "Website Fixes",
+    title: "CMS Development",
     description:
-      "Broken layout? Slow load? Security issue? We diagnose and fix existing sites quickly.",
-    href: "/services/fixes",
+      "Headless or traditional CMS setups so your team can manage content independently — without touching a line of code.",
+    href: "/services/cms-development",
+  },
+  {
+    icon: "◧",
+    title: "Development Support",
+    description:
+      "Existing site with bugs, performance issues, or outdated code? We step in, diagnose, and fix — fast.",
+    href: "/services/development-support",
   },
 ];
 
@@ -49,11 +56,11 @@ export default function Services() {
             What We Do
           </span>
           <h2 className="mt-3 font-bold text-gray-900 text-4xl tracking-tight">
-            Services built for results
+            Design and development, done properly
           </h2>
           <p className="mt-4 max-w-xl text-gray-500 text-lg leading-relaxed">
-            Every service we offer is designed to move your business forward — more traffic, more
-            leads, more revenue.
+            We are a design and development studio. We build websites, web apps, and digital
+            products — nothing else. That focus is what makes us good at it.
           </p>
         </div>
 

@@ -2,34 +2,34 @@
 
 const reasons = [
   {
-    title: "Custom-Built Everything",
+    title: "We Only Do Design & Development",
     description:
-      "We don't touch Wix, Squarespace, or drag-and-drop builders. Everything is coded to your exact requirements.",
+      "No marketing packages, no SEO retainers, no social media add-ons. We build things — and we're very good at it because that's all we do.",
   },
   {
-    title: "Performance-First",
+    title: "Custom-Built, Always",
     description:
-      "Fast load times, clean code, and SEO baked in from the start — not bolted on at the end.",
+      "Zero templates. Every site and app is engineered from scratch to fit your exact requirements, brand, and technical needs.",
   },
   {
-    title: "Transparent Pricing",
+    title: "Performance Baked In",
     description:
-      "You get a clear quote before we start. No hidden fees, no surprise invoices, no locked contracts.",
+      "Fast load times, semantic HTML, and clean architecture are defaults — not upgrades. Your product is built right the first time.",
   },
   {
     title: "You Own Everything",
     description:
-      "The code, the domain, the hosting — it all belongs to you. You're never locked into our platform.",
+      "The code, the repo, the domain, the hosting account — it all belongs to you. You are never locked into us.",
   },
   {
-    title: "Ongoing Support",
+    title: "Transparent from Day One",
     description:
-      "We don't disappear after launch. Need a fix? An update? We're a WhatsApp message away.",
+      "Clear scope, clear pricing, clear timelines. You know exactly what you're getting before we write a single line of code.",
   },
   {
-    title: "Nairobi-Based, Global Standards",
+    title: "Local Presence, Global Standards",
     description:
-      "We understand the local market while building to international quality benchmarks.",
+      "Based in Nairobi. We understand the Kenyan business context while building to the same standards as the best studios globally.",
   },
 ];
 
@@ -47,8 +47,8 @@ export default function WhyFyutcha() {
               Why businesses choose Fyutcha Labs
             </h2>
             <p className="mt-5 text-gray-500 leading-relaxed">
-              Plenty of agencies exist. Here's what makes working with us different — and why
-              clients come back.
+              There are plenty of generalist agencies. We are not one of them. Here is what you
+              get when you work with a studio that only builds.
             </p>
           </div>
 
