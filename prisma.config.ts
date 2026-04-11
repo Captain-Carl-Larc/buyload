@@ -6,7 +6,8 @@ import { defineConfig } from "prisma/config";
 export default defineConfig({
   schema: "prisma/schema.prisma",
   migrations: {
-    path: "prisma/migrations",
+    // This tells Prisma to use ts-node to run your seed file
+    seed: 'ts-node --compiler-options {"module":"CommonJS"} ./prisma/seed.ts',
   },
   datasource: {
     url: process.env["DATABASE_URL"],
