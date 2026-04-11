@@ -12,6 +12,9 @@ export const siteConfig = {
     { title: "Services", href: "/services" },
     { title: "Projects", href: "/solutions" },
     { title: "Posts", href: "/posts" },
+    { title: "Contact", href: "/contact" },
+    { title: "Privacy", href: "/privacy" },
+    { title: "Terms", href: "/terms" },
   ],
   contact: {
     email: "hello@fyutchalabs.com",

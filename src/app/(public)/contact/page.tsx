@@ -1,13 +1,19 @@
+import ContactHero from "@/components/public/contact/ContactHero";
+import ContactForm from "@/components/public/contact/ContactForm";
+
+export const metadata = {
+  title: "Sync with Fyutchalabs | Rapid Technical Response Nairobi",
+  description: "Get in touch with Nairobi's premier engineering studio. 5-minute WhatsApp responses and 1-hour email turnarounds for technical scoping.",
+};
+
 export default function ContactPage() {
   return (
-    <div className="mx-auto px-6 py-20 max-w-2xl">
-      <h1 className="mb-6 font-bold text-4xl">Let's Talk</h1>
-      <form className="space-y-4">
-        <input type="text" placeholder="Name" className="p-4 border rounded-xl w-full" />
-        <input type="email" placeholder="Email" className="p-4 border rounded-xl w-full" />
-        <textarea placeholder="Tell us about your project" rows={5} className="p-4 border rounded-xl w-full" />
-        <button className="bg-black p-4 rounded-xl w-full font-bold text-white">Send Message</button>
-      </form>
+    <div className="flex flex-col gap-0 animate-in duration-700 fade-in">
+      {/* The Hero: WhatsApp and Call Priorities */}
+      <ContactHero />
+      
+      {/* The Form: Clean UI for Detailed Scopes */}
+      <ContactForm />
     </div>
-  )
+  );
 }
